@@ -1,0 +1,89 @@
+.homepage-main .recipe-card{
+    background-color: white;
+    box-shadow: 0 .1rem .8rem rgba(0, 0, 0, 0.048);
+    margin: 2rem 0;
+    overflow: hidden;
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+    max-width:100%;
+}
+
+.recipe-card > img{
+    border-radius: inherit;
+    -webkit-border-radius: inherit;
+    -moz-border-radius: inherit;
+    -ms-border-radius: inherit;
+    -o-border-radius: inherit;
+    max-width: 100%;
+}
+
+.card-info h1{
+    margin: 1rem 0 1.5rem 0;
+}
+
+.recipe-card .card-info{
+    width: 90%;
+    margin: 1rem auto;
+}
+
+.card-info :is(.time, .calories, .ingredients){
+    display: flex;
+    column-gap: .5rem;
+    margin-bottom: 1rem;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+.card-info .ingredients{
+    max-width: 70%;
+}
+
+.ingredients img{
+    align-self: flex-start;
+
+}
+
+.card-info .author-and-link{
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    margin: 2rem 0;
+}
+
+.author-and-link .author{
+    display: flex;
+    align-items: end;
+    background-color: transparent;
+    border : none;
+    column-gap: .4rem;
+}
+
+.author >img{
+    width: 3rem;
+    height:3rem;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.author-and-link .link{
+    display: flex;
+    align-items: bottom;
+    background-color: transparent;
+    border : none;
+    column-gap: .4rem;
+}
+
+.link p{
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.link img{
+    max-width: 1.5rem;
+}

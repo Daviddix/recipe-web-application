@@ -1,41 +1,36 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@font-face {
+  font-family: i-sans;
+  src: url("./assets/fonts/i-sans.ttf")
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+*, *::before, *::after{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+  font-family: i-sans;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+html{
+  font-size: 62.5%;
+  background-color: #fafafa;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+button{
+  cursor: pointer;
 }
 
-.card {
-  padding: 2em;
+:root{
+--homepage-hero-linear-gradient : linear-gradient(180deg, rgba(0, 0, 0, 0.60) 0%, rgba(5, 5, 5, 0.00) 100%);
+--add-linear-gradient :  linear-gradient(180deg, rgba(0, 0, 0, 0.40) 0%, rgba(5, 5, 5, 0.00) 100%);
+--input-border-color : #898686;
+--add-recipe-button-bg : linear-gradient(180deg, #FF8412 0%, #C44226 100%);
+--border-style : 1px solid rgba(0, 0, 0, 0.50); 
+
 }
 
-.read-the-docs {
-  color: #888;
+.primary-button{
+  border-radius: 4rem;
+  background: linear-gradient(91deg, #FF8412 4.18%, #C44226 94.01%);
+  box-shadow: 0px 4px 12px 0px rgba(238, 112, 23, 0.50);
 }
+

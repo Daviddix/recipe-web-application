@@ -1,0 +1,108 @@
+header{
+    padding: 2rem 5vw;
+    background-image:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.60) 0%, rgba(5, 5, 5, 0.00) 100%),
+    url("../../assets/images/homepage-bg.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+header .icon-and-profile-image{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.icon-and-profile-image > button{
+    background-color: transparent;
+    width:3rem;
+    height:3rem;
+    border:none;
+}
+
+.icon-and-profile-image > .profile-button img{
+    width: 100%;
+    height: 100%;
+}
+
+.icon-and-profile-image .user-button{
+    border:2px solid;
+    background-color: rgba(255, 255, 255, 0.514);
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+header h1{
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 2rem auto;
+    color:white;
+    width: 25rem;
+    text-shadow: 0 0 .5rem rgba(0, 0, 0, 0.315);
+}
+
+header form{
+    padding: .8rem 0 .8rem 1.5rem;
+    border-radius: .8rem;
+    -webkit-border-radius: .8rem;
+    -moz-border-radius: .8rem;
+    -ms-border-radius: .8rem;
+    -o-border-radius: .8rem;
+    display: flex;
+    column-gap: .5rem;
+    background-color: white;
+    max-width: 45rem;
+    margin: auto;
+}
+
+form input{
+    flex:.95;
+    border:none;
+}
+
+form input::placeholder{
+    font-weight: 600;
+    opacity: .5;
+}
+
+form label{
+    opacity: .5;
+}
+
+main.homepage-main{
+    width:90vw;
+    margin:auto;
+}
+
+@media screen and (min-width:600px) {
+    header h1{
+        font-size: 2.8rem;
+        width: 25rem;
+    }
+
+    main.homepage-main{
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+        column-gap: 2rem;
+        justify-items: center;
+    }
+}
+
+button.add-new-recipe{
+    background-image: var(--add-recipe-button-bg);
+    border: none;
+    width:5rem;
+    height:5rem;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    position: absolute;
+    bottom: 12rem;
+    right:5vw;
+}
