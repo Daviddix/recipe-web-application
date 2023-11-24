@@ -9,7 +9,7 @@ import plusIcon from "../../assets/icons/plus.svg"
 function Homepage() {
   return (
     <>
-    <header>
+    <header className="homepage-header">
         <div className="icon-and-profile-image">
             <button className='profile-button'>
             <img src={logo} alt="icon" />

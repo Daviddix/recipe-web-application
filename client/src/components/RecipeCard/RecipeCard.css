@@ -41,7 +41,7 @@
     max-width: 70%;
 }
 
-.ingredients img{
+.recipe-card .ingredients img{
     align-self: flex-start;
 
 }

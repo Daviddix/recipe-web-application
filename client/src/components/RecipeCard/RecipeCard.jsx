@@ -5,6 +5,7 @@ import timeIcon from "../../assets/icons/time.svg"
 import fireIcon from "../../assets/icons/fire.svg"
 import foodBasket from "../../assets/icons/vegetable-basket.svg"
 import "./RecipeCard.css"
+import {Link} from "react-router-dom"
 
 function RecipeCard() {
   return (
@@ -35,10 +36,12 @@ function RecipeCard() {
                         <p>by James DE</p>
                     </button>
 
+                    <Link to={"/add-recipe"}>
                     <button className="link">
                         <p>Read More</p>
                         <img src={rightIcon} alt="" />
                     </button>
+                    </Link>
                 </div>
             </div>
         </div>
