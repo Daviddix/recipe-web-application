@@ -45,7 +45,7 @@ header h1{
     text-shadow: 0 0 .5rem rgba(0, 0, 0, 0.315);
 }
 
-.homepage-main header form{
+.homepage-header form{
     padding: .8rem 0 .8rem 1.5rem;
     border-radius: .8rem;
     -webkit-border-radius: .8rem;
@@ -59,17 +59,17 @@ header h1{
     margin: auto;
 }
 
-.homepage-main form input{
+.homepage-header form input{
     flex:.95;
     border:none;
 }
 
-.homepage-main form input::placeholder{
+.homepage-header form input::placeholder{
     font-weight: 600;
     opacity: .5;
 }
 
-.homepage-main form label{
+.homepage-header form label{
     opacity: .5;
 }
 
@@ -103,6 +103,6 @@ button.add-new-recipe{
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
     position: absolute;
-    bottom: 12rem;
+    bottom: 5rem;
     right:5vw;
 }

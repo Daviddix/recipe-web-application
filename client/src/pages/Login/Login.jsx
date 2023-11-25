@@ -5,7 +5,7 @@ import "./Login.css"
 function Login() {
   return (
     <main className="login-main">
-        
+
         <button className="back-button">
             <img src={leftArrowIcon} alt="go back" />
         </button>
@@ -25,7 +25,7 @@ function Login() {
                 </div>
 
                 <button className="primary-button">Login</button>
-                <p className="switch">Don't have an account? <Link>Signup</Link> </p>
+                <p className="switch">Don't have an account? <Link to="/signup">Signup</Link> </p>
             </form>
         </div>
     </main>
