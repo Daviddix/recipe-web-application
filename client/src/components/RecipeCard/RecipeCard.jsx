@@ -36,7 +36,7 @@ function RecipeCard() {
                         <p>by James DE</p>
                     </button>
 
-                    <Link to={"/add-recipe"}>
+                    <Link to={"/recipe/4"}>
                     <button className="link">
                         <p>Read More</p>
                         <img src={rightIcon} alt="" />

@@ -1,0 +1,80 @@
+.login-main{
+    width:90vw;
+    max-width:110rem;
+    margin: 2rem auto;
+}
+
+.login-main > button{
+    margin: 0 0 4rem 0;
+    background-color: rgba(0, 0, 0, 0.671);
+    backdrop-filter: blur(40px);
+    border:none;
+    width:3rem;
+    height:3rem;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.login-main > button img{
+        max-width: 1.6rem;
+}
+
+.login-main .form-container{
+    max-width:40rem;
+    margin:auto;
+}
+
+.form-container h1{
+    text-align: center;
+    margin: 0 0 4rem 0;
+}
+
+.login-form > div{
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    margin: 0 0 2rem 0;
+}
+
+.login-form label{
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: .4rem;
+}
+
+.login-form input{
+    border: var(--border-style);
+    width:100%;
+    padding: 1.2rem .5rem;
+    border-radius: .5rem;
+    -webkit-border-radius: .5rem;
+    -moz-border-radius: .5rem;
+    -ms-border-radius: .5rem;
+    -o-border-radius: .5rem;
+    background-color: white;
+}
+
+.login-form input::placeholder{
+    font-weight: 600;
+}
+
+.login-form button{
+    width: 100%;
+    padding: 1.4rem .5rem;
+    font-weight: 600;
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+}
+
+.login-form .switch{
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+.switch a{
+    color : #FF8412;
+    font-weight: 600;
+}
