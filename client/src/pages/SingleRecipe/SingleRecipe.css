@@ -6,7 +6,6 @@
 }
 
 .recipe-header button{
-    margin: 2rem 0 0 5vw;
     background-color: rgba(0, 0, 0, 0.308);
     backdrop-filter: blur(40px);
     border:none;
