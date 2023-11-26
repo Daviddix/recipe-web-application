@@ -2,8 +2,8 @@ import leftArrowIcon from "../../assets/icons/arrow-left.svg";
 import plusIcon from "../../assets/icons/plus-2.svg";
 import pictureIcon from "../../assets/icons/picture.svg";
 import "./AddRecipe.css";
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 function AddRecipe() {
   return (
@@ -28,8 +28,8 @@ function AddRecipe() {
           <div className="display-image-container">
             <label htmlFor="recipe-image">Display Image</label>
             <div className="image-container">
-                <img src={pictureIcon} alt="picture icon" />
-                <p>Tap to add image</p>
+              <img src={pictureIcon} alt="picture icon" />
+              <p>Tap to add image</p>
             </div>
           </div>
 
