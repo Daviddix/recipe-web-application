@@ -5,6 +5,7 @@ import searchIcon from "../../assets/icons/search.svg"
 import "./Homepage.css"
 import RecipeCard from '../../components/RecipeCard/RecipeCard'
 import plusIcon from "../../assets/icons/plus.svg"
+import { Link } from 'react-router-dom'
 
 function Homepage() {
   return (
@@ -17,6 +18,20 @@ function Homepage() {
 
             <button className="user-button">
                 <img src={userIcon} alt="" />
+                <div className="not-logged-in">
+                    <button>
+                        <Link to="/login">
+                        Login
+                        </Link>
+                        </button>
+
+
+                    <button>
+                    <Link to="/signup">
+                        Sign Up
+                        </Link>
+                    </button>
+                </div>
             </button>
         </div>
 
