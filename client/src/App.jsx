@@ -4,6 +4,7 @@ import Homepage from "./pages/Homepage/Homepage"
 import SingleRecipe from "./pages/SingleRecipe/SingleRecipe"
 import Login from "./pages/Login/Login"
 import Signup from "./pages/Signup/Signup"
+import AddRecipe from "./pages/AddRecipe/AddRecipe"
 function App() {
   return (
     <Routes>
@@ -11,6 +12,7 @@ function App() {
       <Route path="/recipe/:recipeID" element={<SingleRecipe />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path="/add-recipe" element={<AddRecipe />} />
     </Routes>
   )
 }
