@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState } from 'react'
 import logo from "../../assets/icons/chef-hat.svg"
 import userIcon from "../../assets/icons/user.svg"
 import searchIcon from "../../assets/icons/search.svg"
@@ -8,6 +8,11 @@ import plusIcon from "../../assets/icons/plus.svg"
 import { Link } from 'react-router-dom'
 
 function Homepage() {
+    const [openMenuTab, setOpenMenuTab] = useState(false)
+
+    function toggleMenuTab(){
+        setOpenMenuTab((prev)=> !prev)
+    }
   return (
     <>
     <header className="homepage-header">
@@ -17,8 +22,12 @@ function Homepage() {
             </button>
 
             <button className="user-button">
-                <img src={userIcon} alt="" />
-                <div className="not-logged-in">
+                <img 
+                onClick={toggleMenuTab}
+                src={userIcon} alt="" />
+
+                {openMenuTab &&
+                    <div className="not-logged-in">
                     <button>
                         <Link to="/login">
                         Login
@@ -32,6 +41,23 @@ function Homepage() {
                         </Link>
                     </button>
                 </div>
+
+                 /* <div className="logged-in">
+                    <button>
+                        <Link to="/profile">
+                        View Profile
+                        </Link>
+                        </button>
+
+
+                    <button>
+                    <Link to="/signup">
+                        Logout
+                        </Link>
+                    </button>
+                </div>  */
+                 
+                }
             </button>
         </div>
 

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 const bcrypt = require('bcryptjs')
-const recipeModel = require("./recipe")
+// const recipeModel = require("./recipe")
 
 const userSchema = new mongoose.Schema({
     profilePicture : {
@@ -16,7 +16,8 @@ const userSchema = new mongoose.Schema({
 
     email :  {
         type : String, 
-        required : true
+        required : true,
+        unique : true
     },
 
     password :  {
@@ -24,10 +25,10 @@ const userSchema = new mongoose.Schema({
         required : true
     },
 
-    recipesPosted : {
-        type : [mongoose.SchemaType.objectId], 
-        ref : recipeModel
-    }
+    recipesPosted : [{
+        type : mongoose.Schema.Types.ObjectId, 
+        ref : "Recipes"
+    }]
 })
 
 userSchema.pre('save', function(next) {

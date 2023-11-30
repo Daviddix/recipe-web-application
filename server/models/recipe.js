@@ -33,10 +33,10 @@ const recipeSchema = new mongoose.Schema({
          required : true
         },
 
-    recipeAuthor : {
-        type : [mongoose.SchemaType.objectId], 
+    recipeAuthor : [{
+        type : mongoose.Schema.Types.ObjectId, 
         ref : userModel
-    }
+    }]
 })
 
 userSchema.pre('save', function(next) {
@@ -53,6 +53,6 @@ userSchema.pre('save', function(next) {
     })    
 })
 
-const recipeModel = mongoose.model("Recipe", recipeSchema)
+const recipeModel = mongoose.model("Recipes", recipeSchema)
 
 module.exports = recipeModel

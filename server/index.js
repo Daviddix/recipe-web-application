@@ -10,15 +10,17 @@ const cookieParser = require("cookie-parser")
 const mongoose = require("mongoose")
 const MONGO_URI = process.env.MONGO_URI
 
+//middlewares
+app.use(express.json())
+app.use(cookieParser())
+app.use(cors())
+
+
 //routes
 app.use("/user", userRouter)
 app.use("/recipe", recipeRouter)
 
 
-//middlewares
-app.use(express.json())
-app.use(cookieParser())
-app.use(cors())
 
 
 //MongoDB connection
