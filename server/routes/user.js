@@ -1,6 +1,6 @@
 const express = require("express")
 const userModel = require("../models/user")
-const { noBodyDataError, unknownError, userNotFoundInDataBase, wrongPassword, logoutError, duplicateUsername, duplicateEmail, noJwtToken, jwtTokenError } = require("../actions/errorMessages")
+const { noBodyDataError, unknownError, userNotFoundInDataBase, wrongPassword, logoutError, duplicateUsername, duplicateEmail, noJwtToken, jwtTokenError, imageUploadError } = require("../actions/errorMessages")
 const cloudinary = require('cloudinary').v2
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcryptjs")
@@ -158,6 +158,48 @@ userRouter.get("/profile/", useAuth, async (req, res)=>{
     }
     catch(err){
         res.status(500).json(unknownError)
+    }
+})
+
+userRouter.get("/edit/profile/", useAuth, async (req, res)=>{
+    try{
+        const id = req.user.userId
+        const user = await userModel.findById(id, ["_id", "profilePicture", "recipesPosted", "username"]).populate(
+            {
+           path :"recipesPosted",
+           populate: { path: 'recipeAuthor', select : ["username", "profilePicture"] }
+          })
+        res.status(200).json(user) 
+    }
+    catch(err){
+        res.status(500).json(unknownError)
+    }
+})
+
+userRouter.patch("/edit/profile/", useAuth, async (req, res)=>{
+    try{
+        if(req.body.newProfilePicture){
+            const newProfilePicture = req.body.newProfilePicture
+            const imageBuffer = Buffer.from(newProfilePicture, "base64") 
+            const id = req.user.userId
+
+            cloudinary.uploader.upload_stream(
+                { resource_type: 'auto' },
+              async function (error, result) {
+                if (error) {
+                  res.status(400).json(imageUploadError);
+                }
+                const user = await userModel.findById(id)
+                user.profilePicture = result.url
+                await user.save()
+
+                res.status(201).json(userCreated);
+              }
+            ).end(imageBuffer)
+        }
+    }
+    catch(err){
+        console.log(err)
     }
 })
 

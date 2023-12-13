@@ -6,6 +6,7 @@ import Login from "./pages/Login/Login"
 import Signup from "./pages/Signup/Signup"
 import AddRecipe from "./pages/AddRecipe/AddRecipe"
 import Profile from "./pages/Profile/Profile"
+import EditProfile from "./pages/EditProfile/EditProfile"
 function App() {
   return (
     <Routes>
@@ -15,6 +16,7 @@ function App() {
       <Route path="/signup" element={<Signup />} />
       <Route path="/profile/:profileID" element={<Profile />} />
       <Route path="/add-recipe" element={<AddRecipe />} />
+      <Route path="/edit-profile" element={<EditProfile />} />
     </Routes>
   )
 }

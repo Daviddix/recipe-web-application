@@ -1,0 +1,128 @@
+.profile-header{
+    height:20rem;
+    background-image:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.575) 0%, rgba(5, 5, 5, 0.185) 100%),
+        url("../../assets/images/add-bg-image.jpg");
+}
+
+.profile-header .back-button{
+    background-color: rgba(0, 0, 0, 0.308);
+    backdrop-filter: blur(40px);
+    border:none;
+    width:3rem;
+    height:3rem;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.profile-header .back-button img{
+    max-width: 1.6rem;
+}
+
+.profile-main{
+    width:90vw;
+    margin:auto;
+}
+
+.profile-main .profile-info{
+    max-width: fit-content;
+    margin:-5rem auto 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.profile-picture-and-icon > img{
+    aspect-ratio: 1/1;
+    width:13rem;
+    object-fit:cover;
+    border-radius: 50%;
+    border: 5px solid #fafafa;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.profile-picture-and-icon button{
+    aspect-ratio: 1/1;
+    width:3.5rem;
+    border:1px solid grey;
+    background-color: #fafafa;
+    border-radius:50%;
+    -webkit-border-radius:50%;
+    -moz-border-radius:50%;
+    -ms-border-radius:50%;
+    -o-border-radius:50%;
+    position:absolute;
+    bottom:30%;
+    right:3.5rem;
+}
+
+.profile-picture-and-icon button img{
+    max-width: 2rem;
+    opacity: .8;
+}
+
+.profile-info h1{
+    font-size: 2.5rem;
+}
+
+.profile-info p {
+    font-size: 1.2rem;
+    opacity: .7;
+}
+
+.username-and-icon{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: .5rem;
+}
+
+.username-and-icon button{
+    background-color: transparent;
+    border:none;
+}
+
+.username-and-icon button img{
+    max-width: 2rem;
+    opacity: .8;
+}
+
+.profile-main .profile-picture-and-icon.loading::after{
+    content: "";
+    position:absolute;
+    top:20%;
+    left:40%;
+    width: 4rem;
+    height: 4rem;
+    border: 4px solid #C44226;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: block;
+    margin : 1rem auto;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    } 
+
+@media screen and (min-width:600px) {
+    .created-recipes-container{
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+        column-gap: 2rem;
+        justify-items: center;
+    }
+}
