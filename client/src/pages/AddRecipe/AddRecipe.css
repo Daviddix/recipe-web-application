@@ -108,6 +108,10 @@
     justify-content: center;
     flex-direction: column;
     row-gap: .5rem;
+    background-size:cover;
+    cursor:pointer;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .image-container>* {

@@ -13,4 +13,9 @@ const logoutSuccessful = {
     message : "User has been logged out successfully"
 }
 
-module.exports = {userCreated, loginSuccessful, logoutSuccessful}
+const recipeCreated = {
+    status : "success",
+    message : "Your recipe has successfully been created!"
+}
+
+module.exports = {userCreated, loginSuccessful, logoutSuccessful, recipeCreated}

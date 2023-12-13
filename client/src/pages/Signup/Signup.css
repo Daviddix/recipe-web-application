@@ -17,6 +17,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-size: cover;
+    background-position: center;
 }
 
 .main-circle img {
@@ -44,12 +46,12 @@
     position: absolute;
     bottom: 1rem;
     right: 0;
+    cursor: pointer;
 }
 
 .small-circle img {
     opacity: .7;
     width: 1.5rem;
-
 }
 
 .signup-main>button {
@@ -129,7 +131,19 @@
     font-weight: 600;
 }
 
-/* input:focus:invalid {
-    background-color: rgb(252, 243, 243);
-    border-color: rgb(158, 1, 1);
-} */
+.signup-form > div p{
+    font-size: 1.2rem;
+    margin: .2rem 0 0 ;
+    color:rgb(191, 8, 8);
+}
+
+.signup-form > div p.normal-email-error,
+.signup-form > div p.normal-username-error
+{
+    display : none;
+
+}
+
+input:invalid:not(:placeholder-shown):focus + p:first-of-type{
+    display: initial;
+}

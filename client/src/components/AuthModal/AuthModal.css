@@ -1,0 +1,89 @@
+.auth-modal-overlay{
+    width:100vw;
+    height:100vh;
+    background-color:rgba(236, 214, 196, 0.432);
+    backdrop-filter: blur(60px);
+    position: absolute;
+    top:0;
+    z-index:4;
+    left:0;
+    display:grid;
+    place-items: center;
+}
+
+.auth-modal-overlay .back-button{
+    background-color: rgba(0, 0, 0, 0.308);
+    backdrop-filter: blur(40px);
+    border:none;
+    width:3rem;
+    height:3rem;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    position: absolute;
+    top:6rem;
+    left:6rem;
+}
+
+.auth-modal-overlay .back-button img{
+    max-width: 1.6rem;
+}
+
+.auth-modal-overlay .auth-modal{
+    background-color: white;
+    width:90vw;
+    padding:2rem;
+    max-width:45rem;
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+    border: 1px solid var(--input-border-color);
+    box-shadow: 0 .4rem 1rem rgba(0, 0, 0, 0.384);
+}
+
+.auth-modal > img{
+    display: block;
+    margin:0rem auto 2rem;
+}
+
+.auth-modal p{
+    font-size: 1.4rem;
+    font-weight: 500;
+    max-width: 90%;
+    text-align: center;
+    margin:3rem auto;
+}
+
+.auth-button-container{
+    display: flex;
+    flex-direction: column;
+    max-width: 75%;
+    margin: auto;
+}
+
+.auth-button-container button{
+    width: 100%;
+    padding: 1.4rem .5rem;
+    font-weight: 600;
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+}
+
+.auth-button-container button:last-of-type{
+    background-color: transparent;
+    border-radius: 40rem;
+    border: 1px solid #C44226;
+    -webkit-border-radius: 40rem;
+    -moz-border-radius: 40rem;
+    -ms-border-radius: 40rem;
+    -o-border-radius: 40rem;
+}
+
+.auth-button-container a{
+    text-decoration: none;
+    color:inherit;
+}

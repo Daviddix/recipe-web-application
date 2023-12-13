@@ -8,49 +8,35 @@ const recipeSchema = new mongoose.Schema({
         required : true
     },
 
-    displayImage : {
+    recipeImage : {
         type : String, 
         required : true
     },
 
-    ingredients : {
+    recipeIngredients : {
         type : [String], 
         required : true
     },
 
-    preparationProcess : {
+    recipePreparationProcess : {
         type : String,
          required : true
         },
 
-    time : {
+        recipeTime : {
         type : Number,
          required : true
         },
 
-    calories : {
+        recipeCalories : {
         type : Number,
          required : true
         },
 
-    recipeAuthor : [{
+    recipeAuthor : {
         type : mongoose.Schema.Types.ObjectId, 
-        ref : userModel
-    }]
-})
-
-userSchema.pre('save', function(next) {
-    const user = this;
-    bcrypt.genSalt(10, function(err, salt) {
-        bcrypt.hash(user.password, salt, function(err, hash) {
-            if(err){
-                return next(err)
-            }else{
-                user.password = hash
-                next()
-            }
-        })
-    })    
+        ref : "Users"
+    }
 })
 
 const recipeModel = mongoose.model("Recipes", recipeSchema)

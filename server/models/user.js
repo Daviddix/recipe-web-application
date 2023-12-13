@@ -1,6 +1,5 @@
 const mongoose = require("mongoose")
 const bcrypt = require('bcryptjs')
-// const recipeModel = require("./recipe")
 
 const userSchema = new mongoose.Schema({
     profilePicture : {

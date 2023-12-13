@@ -1,7 +1,3 @@
-import "./Profile.css"
-import AuthModal from "../../components/AuthModal/AuthModal";
-import { authAtom } from "../../components/UserButton/UserButton";
-import { useAtom } from "jotai";
 import { useNavigate, useParams } from "react-router-dom";
 import leftArrowIcon from "../../assets/icons/arrow-left.svg";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
@@ -9,10 +5,8 @@ import "./Profile.css"
 import { useEffect, useState } from "react";
 import Loader from "../../components/Loader/Loader";
 
-
-function Profile() {
-    const [isAuthenticated, setIsAuthenticated] = useState(false)
-    const {profileID} = useParams()
+function ProfileSub() {
+  const {profileID} = useParams()
     const [userDetails, setUserDetails] = useState({})
     const[loadingProfile, setLoadingProfile] = useState(true)
     const navigate = useNavigate()
@@ -33,12 +27,18 @@ function Profile() {
         throw Error("err", { cause: jsonResponse })
       }
       setUserDetails(jsonResponse)
-      setIsAuthenticated(true)
       setLoadingProfile(false)
     }
     catch (err) {
       setLoadingProfile(false)
-      setIsAuthenticated(false)
+      const reasonForError = err.cause.reason
+      if (reasonForError == "missing token") {
+        alert("login modal")
+      } else if (reasonForError == "token error") {
+        alert("error with token")
+      }else{
+        alert("an unknown error ocurred, please try again")
+      }
     }
   }
 
@@ -49,7 +49,6 @@ function Profile() {
     loadingProfile? 
     <Loader messageToDisplay={"Loading Profile Details"} />
     :
-    isAuthenticated?
     <>
     <header className="profile-header">
     <button 
@@ -74,9 +73,7 @@ function Profile() {
         </div>
     </main>
     </>
-    :
-    <AuthModal />
   )
 }
 
-export default Profile
+export default ProfileSub

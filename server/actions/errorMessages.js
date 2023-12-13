@@ -28,4 +28,34 @@ const logoutError = {
     message : "an error ocurred when trying to log the user out"
 }
 
-module.exports = {noBodyDataError, unknownError, userNotFoundInDataBase, wrongPassword, logoutError}
+const duplicateUsername = {
+    status : "failed",
+    reason : "duplicate username",
+    message : "the username you entered is already taken, please try a different one"
+}
+
+const duplicateEmail = {
+    status : "failed",
+    reason : "duplicate email",
+    message : "the email address you entered has already been used, please try a different one"
+}
+
+const noJwtToken = {
+    status : "failed",
+    reason : "missing token",
+    message : "unauthorized - Missing JWT in cookies"
+}
+
+const jwtTokenError = {
+    status : "failed",
+    reason : "token error",
+    message : "an error ocurred while trying to validate the jwt token"
+}
+
+const imageUploadError = {
+    status : "failed",
+    reason : "image upload",
+    message : "an error ocurred while trying to upload your image, please try a different one"
+}
+
+module.exports = {noBodyDataError, unknownError, userNotFoundInDataBase, wrongPassword, logoutError, duplicateUsername, duplicateEmail, noJwtToken, jwtTokenError, imageUploadError}

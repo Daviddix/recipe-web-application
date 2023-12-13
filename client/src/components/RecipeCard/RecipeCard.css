@@ -8,7 +8,7 @@
     -moz-border-radius: 1rem;
     -ms-border-radius: 1rem;
     -o-border-radius: 1rem;
-    max-width:100%;
+    width:100%;
 }
 
 .recipe-card > img{
@@ -17,7 +17,9 @@
     -moz-border-radius: inherit;
     -ms-border-radius: inherit;
     -o-border-radius: inherit;
-    max-width: 100%;
+    width: 100%;
+    height: 25rem;
+    object-fit: cover;
 }
 
 .card-info h1{
@@ -69,6 +71,11 @@
     -moz-border-radius: 50%;
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
+}
+
+.author-and-link a:first-of-type{
+    color:inherit;
+    text-decoration:none;
 }
 
 .author-and-link .link{

@@ -79,3 +79,9 @@
     color : #FF8412;
     font-weight: 600;
 }
+
+.login-form > div p{
+    font-size: 1.2rem;
+    margin: .2rem 0 0 ;
+    color:rgb(191, 8, 8);
+}

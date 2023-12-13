@@ -1,19 +1,77 @@
-import { useState } from 'react'
 import logo from "../../assets/icons/chef-hat.svg"
-import userIcon from "../../assets/icons/user.svg"
 import searchIcon from "../../assets/icons/search.svg"
 import "./Homepage.css"
 import RecipeCard from '../../components/RecipeCard/RecipeCard'
 import plusIcon from "../../assets/icons/plus.svg"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import UserButton, { authAtom } from "../../components/UserButton/UserButton"
+import { useAtom } from "jotai"
+import { useState, useEffect } from "react"
+import AuthModal from "../../components/AuthModal/AuthModal"
 
 function Homepage() {
-    const [openMenuTab, setOpenMenuTab] = useState(false)
+    const [isAuthenticated, setIsAuthenticated] = useAtom(authAtom)
+    const [recipes, setRecipes] = useState([])
+    const [searchedRecipes, setSearchedRecipes] = useState([])
+    const [isSearching, setIsSearching] = useState(false)
+    const [gettingRecipes, setGettingRecipes] = useState(true)
+    const [showModal, setShowModal] = useState(false)
+    const navigate = useNavigate()
+    const mappedRecipes = recipes.map((recipe)=>{
+        return <RecipeCard key={recipe._id} {...recipe}/>
+    })
+     const mappedSearchedRecipes = searchedRecipes.map((recipe)=>{
+        return <RecipeCard key={recipe._id} {...recipe}/>
+    })
 
-    function toggleMenuTab(){
-        setOpenMenuTab((prev)=> !prev)
+    useEffect(()=>{
+        getAllRecipes()
+    }, [])
+
+    function handleNewRecipeButton(){
+        if(isAuthenticated){
+            navigate("/add-recipe")
+        }else{
+         setShowModal(true)
+        }
     }
+    
+    async function getAllRecipes(){
+        try{
+        const recipeResponse = await fetch("http://localhost:3000/recipe/")
+
+                const recipeResponseInJson = await recipeResponse.json()
+
+                if(!recipeResponse.ok){
+                    throw Error("Err", {cause : recipeResponseInJson})
+                }
+                setRecipes(recipeResponseInJson)
+                setGettingRecipes(false)
+        }
+        catch(err){
+            setGettingRecipes(false)
+            console.log(err)
+            alert("an error ocurred")
+        }
+        
+    }
+
+    function handleSearch(searchTerm){
+        searchTerm.trim()
+        if(searchTerm){
+            setIsSearching(true)
+            const sc = recipes.filter((recipe)=> recipe.recipeName.toLowerCase().includes(searchTerm))
+            setSearchedRecipes(sc)
+        }else{
+            setIsSearching(false)
+        }
+        
+    }
+    
   return (
+    showModal?
+    <AuthModal type={"close"} setShowModal={setShowModal} />
+    :
     <>
     <header className="homepage-header">
         <div className="icon-and-profile-image">
@@ -21,44 +79,7 @@ function Homepage() {
             <img src={logo} alt="icon" />
             </button>
 
-            <button className="user-button">
-                <img 
-                onClick={toggleMenuTab}
-                src={userIcon} alt="" />
-
-                {openMenuTab &&
-                    <div className="not-logged-in">
-                    <button>
-                        <Link to="/login">
-                        Login
-                        </Link>
-                        </button>
-
-
-                    <button>
-                    <Link to="/signup">
-                        Sign Up
-                        </Link>
-                    </button>
-                </div>
-
-                 /* <div className="logged-in">
-                    <button>
-                        <Link to="/profile">
-                        View Profile
-                        </Link>
-                        </button>
-
-
-                    <button>
-                    <Link to="/signup">
-                        Logout
-                        </Link>
-                    </button>
-                </div>  */
-                 
-                }
-            </button>
+            <UserButton />
         </div>
 
         <h1>Delicious Recipes, Just a Tap Away</h1>
@@ -67,18 +88,37 @@ function Homepage() {
             <label htmlFor="search">
                 <img src={searchIcon} alt="" />
             </label>
-            <input placeholder="Search for a recipe" type="text" name="search" id="search" />
+            <input 
+            placeholder="Search for a recipe" 
+            type="text" 
+            onChange={(e)=>{
+                handleSearch(e.target.value)
+            }}
+            name="search" 
+            id="search" 
+            />
         </form>
     </header>
 
     <main className="homepage-main">
-        <RecipeCard />
-        <RecipeCard />
-        <RecipeCard />
+        {
+            gettingRecipes?  
+            <div className="loader-message">
+            <div className="loader-circle"></div>
+            <p>Loading Recipes</p>
+        </div> 
+        : 
+        isSearching?
+        mappedSearchedRecipes 
+        :
+        mappedRecipes
+        }
     </main>
 
-    <button className="add-new-recipe">
-        <img src={plusIcon} alt="" />
+    <button 
+    onClick={handleNewRecipeButton}
+    className="add-new-recipe">
+        <img src={plusIcon} alt="add recipe" />    
     </button>
     </>
   )

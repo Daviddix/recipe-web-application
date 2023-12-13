@@ -85,9 +85,18 @@ main.recipe-info-main{
     margin: 2rem 0rem;
 }
 
-.process p{
+.process p
+{
     font-size: clamp(1.4rem, 2vw, 1.6rem);
     font-weight: 500;
     margin:0 0 .8rem 0rem;
     line-height: 1.5;
+}
+
+.process li{
+    list-style-position: inside;
+    font-size: clamp(1.4rem, 2vw, 1.4rem);
+    line-height: 1.5;
+    font-weight: 500;
+    margin:0 0 .8rem 0rem;
 }

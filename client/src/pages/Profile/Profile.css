@@ -38,6 +38,7 @@
 .profile-info > img{
     aspect-ratio: 1/1;
     width:12rem;
+    object-fit:cover;
     border-radius: 50%;
     border: 5px solid #fafafa;
     -webkit-border-radius: 50%;
