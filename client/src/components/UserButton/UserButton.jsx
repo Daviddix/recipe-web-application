@@ -89,7 +89,7 @@ function UserButton() {
                     openMenuTab == true && isAuthenticated &&
                     <div className="logged-in">
                     <button>
-                        <Link to="/profile">
+                        <Link to="/edit-profile">
                         View Profile
                         </Link>
                         </button>

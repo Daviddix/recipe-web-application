@@ -28,9 +28,11 @@
 }
 
 .profile-main .profile-info{
-    max-width: fit-content;
+    width: 30rem;
+    max-width:30rem;
     margin:-5rem auto 2rem;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
     position: relative;
@@ -60,7 +62,7 @@
     -o-border-radius:50%;
     position:absolute;
     bottom:30%;
-    right:3.5rem;
+    right:8.5rem;
 }
 
 .profile-picture-and-icon button img{
@@ -116,7 +118,39 @@
     100% {
         transform: rotate(360deg);
     }
-    } 
+} 
+
+.profile-main .input-and-icon{
+    max-width: 35rem;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.input-and-icon button{
+    position: absolute;
+    right:0;
+    height:100%;
+    width:6rem;
+    border-radius: .8rem;
+    -webkit-border-radius: .8rem;
+    -moz-border-radius: .8rem;
+    -ms-border-radius: .8rem;
+    -o-border-radius: .8rem;
+}
+
+.input-and-icon input{
+    border: var(--border-style);
+    width: 100%;
+    padding: 1.2rem .5rem;
+    border-radius: .8rem;
+    -webkit-border-radius: .8rem;
+    -moz-border-radius: .8rem;
+    -ms-border-radius: .8rem;
+    -o-border-radius: .8rem;
+    background-color: white;
+}
 
 @media screen and (min-width:600px) {
     .created-recipes-container{

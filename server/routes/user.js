@@ -4,7 +4,7 @@ const { noBodyDataError, unknownError, userNotFoundInDataBase, wrongPassword, lo
 const cloudinary = require('cloudinary').v2
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcryptjs")
-const { userCreated, loginSuccessful, logoutSuccessful } = require("../actions/successMessages")
+const { userCreated, loginSuccessful, logoutSuccessful, profilePictureUpdated, usernameUpdated } = require("../actions/successMessages")
 const JWT_SECRET = process.env.JWT_SECRET
 const timeBeforeItExpires = 500000
 
@@ -177,8 +177,8 @@ userRouter.get("/edit/profile/", useAuth, async (req, res)=>{
 })
 
 userRouter.patch("/edit/profile/", useAuth, async (req, res)=>{
-    try{
         if(req.body.newProfilePicture){
+            try{
             const newProfilePicture = req.body.newProfilePicture
             const imageBuffer = Buffer.from(newProfilePicture, "base64") 
             const id = req.user.userId
@@ -193,14 +193,29 @@ userRouter.patch("/edit/profile/", useAuth, async (req, res)=>{
                 user.profilePicture = result.url
                 await user.save()
 
-                res.status(201).json(userCreated);
+                res.status(201).json(profilePictureUpdated);
               }
             ).end(imageBuffer)
+            }
+            catch(err){
+                res.status(400).json(imageUploadError)
+            }
         }
-    }
-    catch(err){
-        console.log(err)
-    }
+        else if(req.body.newUsername){
+            try{
+                const newUsername = req.body.newUsername
+                const id = req.user.userId
+
+                const user = await userModel.findById(id)
+                user.username = newUsername
+                await user.save()
+
+                res.status(201).json(usernameUpdated);
+            }
+            catch(err){
+                res.status(400).json(unknownError)
+            }
+        }
 })
 
 userRouter.get("/logout", async(req,res)=>{

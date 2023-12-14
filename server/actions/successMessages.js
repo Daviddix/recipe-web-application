@@ -18,4 +18,14 @@ const recipeCreated = {
     message : "Your recipe has successfully been created!"
 }
 
-module.exports = {userCreated, loginSuccessful, logoutSuccessful, recipeCreated}
+const profilePictureUpdated = {
+    status : "success",
+    message : "Your profile picture has successfully been updated!"
+}
+
+const usernameUpdated = {
+    status : "success",
+    message : "Your username has successfully been updated!"
+}
+
+module.exports = {userCreated, loginSuccessful, logoutSuccessful, recipeCreated, profilePictureUpdated, usernameUpdated}

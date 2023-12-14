@@ -15,6 +15,8 @@ function EditProfile() {
     const inputRef = useRef(null);
     const [userDetails, setUserDetails] = useState({})
     const [updatingProfilePicture, setUpdatingProfilePicture] = useState(false)
+    const [showUpdateUsername, setShowUpdateUsername] = useState(false)
+    const [newUsernameToUpdate, setNewUsernameToUpdate] = useState("")
     const[loadingProfile, setLoadingProfile] = useState(true)
     const navigate = useNavigate()
     const mappedRecipes = userDetails?.recipesPosted?.map((recipe)=>{
@@ -34,6 +36,7 @@ function EditProfile() {
         throw Error("err", { cause: jsonResponse })
       }
       setUserDetails(jsonResponse)
+      setNewUsernameToUpdate(jsonResponse.username)
       setIsAuthenticated(true)
       setLoadingProfile(false)
     }
@@ -92,6 +95,32 @@ function EditProfile() {
     
   }
 
+  async function updateUsername(e, newUsername){
+    e.preventDefault()
+    const data = {newUsername}
+    try{
+      const usernameResponse = await fetch("http://localhost:3000/user/edit/profile/", {
+      method : "PATCH",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials : "include"
+  })
+  const usernameResponseJson = await usernameResponse.json()
+  if(!usernameResponse.ok){
+      throw Error("err", {cause : usernameResponseJson})
+  }
+  alert("your username has been updated")
+  getProfileDetails()
+  setShowUpdateUsername(false)
+  }
+  catch(err){
+      alert("an error ocurred")
+      console.log(err.cause, err)
+  }
+  }
+
   
   return (
     loadingProfile? 
@@ -129,12 +158,36 @@ function EditProfile() {
             </div>
             
 
+            {
+            !showUpdateUsername?
             <div className="username-and-icon">
                 <h1>{userDetails?.username}</h1>
             <button className="edit-icon">
-                <img src={editIcon} alt="edit profile icon" />
+                <img 
+                onClick={()=>{
+                  setShowUpdateUsername((prev)=> !prev)
+                }}
+                src={editIcon} alt="edit profile icon" />
             </button>
             </div>
+              :
+             <form 
+            onSubmit={(e)=>{
+              updateUsername(e, newUsernameToUpdate)
+            }}
+            className="input-and-icon">
+              <input 
+              value={newUsernameToUpdate}
+              onChange={(e)=>{
+                setNewUsernameToUpdate(e.target.value)
+              }}
+              minLength={3}
+              required
+              maxLength={15}
+              type="text" />
+              <button className="primary-button">Update</button>
+            </form>
+            }
             
             <p>{userDetails?.recipesPosted?.length} Recipes Published</p>
             
