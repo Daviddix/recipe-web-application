@@ -36,6 +36,12 @@ const recipeSchema = new mongoose.Schema({
     recipeAuthor : {
         type : mongoose.Schema.Types.ObjectId, 
         ref : "Users"
+    },
+
+    madeByUser : {
+        type: Boolean,
+        required : true,
+        default : false
     }
 })
 

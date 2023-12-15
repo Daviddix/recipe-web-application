@@ -1,7 +1,9 @@
 import React from 'react'
 
-function IngredientInput({recipeInfo, setRecipeInfo, num}) {
+function IngredientInput({recipeInfo, setRecipeInfo, num, isNew}) {
+  
   return (
+    !isNew?
     <input 
     required
     onInput={(e)=>{
@@ -13,6 +15,19 @@ function IngredientInput({recipeInfo, setRecipeInfo, num}) {
     name="recipeIngredients" 
     id="recipe-ingredients" 
     value={recipeInfo.recipeIngredients[num]}
+    />
+    :
+    <input 
+    required
+    onInput={(e)=>{
+      let fakeRecipeInfo = {...recipeInfo}
+        fakeRecipeInfo.newRecipeIngredients[num] = e.target.value
+        setRecipeInfo(fakeRecipeInfo)
+    }}
+    type="text" 
+    name="recipeIngredients" 
+    id="recipe-ingredients" 
+    value={recipeInfo.newRecipeIngredients[num]}
     />
   )
 }

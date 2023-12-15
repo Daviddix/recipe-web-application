@@ -3,7 +3,7 @@ const cloudinary = require('cloudinary').v2
 const jwt = require("jsonwebtoken")
 const { noBodyDataError, unknownError, imageUploadError } = require("../actions/errorMessages")
 const recipeModel = require("../models/recipe")
-const { recipeCreated } = require("../actions/successMessages")
+const { recipeCreated, recipeUpdated } = require("../actions/successMessages")
 const mongoose = require("mongoose")
 const userModel = require("../models/user")
 const JWT_SECRET = process.env.JWT_SECRET
@@ -78,15 +78,83 @@ recipeRouter.post("/", useAuth, async (req, res)=>{
     }
 })
 
+recipeRouter.patch("/edit/:recipeID", useAuth, async (req, res)=>{
+  const recipeId = req.params.recipeID
+  try{
+      if(!req.body.newRecipeName){
+          return res.status(404).json(noBodyDataError)
+      }
+      let {newRecipeName, newRecipeImage ,newRecipeIngredients,newRecipePreparationProcess, newRecipeTime, newRecipeCalories} = req.body
+
+      newRecipeTime = parseInt(newRecipeTime)
+      newRecipeCalories = parseInt(newRecipeCalories)
+
+      const imageBuffer = Buffer.from(newRecipeImage, "base64") 
+
+          cloudinary.uploader.upload_stream(
+              { resource_type: 'auto' },
+            async function (error, result) {
+              if (error) {
+                console.log(error)
+                return res.status(400).json(imageUploadError)
+              }
+              const updatedRecipe = {
+               recipeName: newRecipeName, 
+               recipeImage: result.url ,
+               recipeIngredients: newRecipeIngredients,
+               recipePreparationProcess: newRecipePreparationProcess, 
+               recipeTime: newRecipeTime, 
+               recipeCalories: newRecipeCalories
+              }
+               await recipeModel.findByIdAndUpdate(recipeId, updatedRecipe)
+
+              res.status(201).json(recipeUpdated);
+            } 
+          ).end(imageBuffer)
+
+  }
+  catch(err){
+    res.status(400).json(unknownError);
+  }
+})
+
 recipeRouter.get("/", async (req, res)=>{
   try{
+    const token = req.cookies.jwt
     const recipes = await recipeModel.find({}).populate("recipeAuthor", ["username", "profilePicture", "_id"])
-    res.json(recipes)
+
+    if(token){
+      jwt.verify(token, JWT_SECRET, async function (err, decoded) {
+        if (err) {
+          return res.status(400).json(jwtTokenError)
+        }
+        const id = decoded.userId
+
+        for (const recipe of recipes){
+          if(recipe.recipeAuthor._id == id){
+            recipe.madeByUser = true
+            await recipe.save() 
+          }
+        }
+      })       
+    }
+    res.status(200).json(recipes)
   }
   catch(err){
     console.log(err)
     res.status(400).json(unknownError)
   }
+})
+
+recipeRouter.get("/edit/:recipeID", useAuth, async (req, res)=>{
+  try{
+    const id = req.params.recipeID 
+    const individualRecipe = await recipeModel.findById(id).populate("recipeAuthor", ["username"])
+    res.json(individualRecipe)
+  }catch(err){
+    res.status(400).json(unknownError)
+  }
+    
 })
 
 recipeRouter.get("/:recipeID", async (req, res)=>{

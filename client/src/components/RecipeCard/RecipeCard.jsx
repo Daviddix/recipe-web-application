@@ -6,7 +6,7 @@ import "./RecipeCard.css"
 import {Link} from "react-router-dom"
 import { useState } from "react"
 
-function RecipeCard({recipeName, recipeImage, recipeTime, recipeCalories, recipeIngredients, recipeAuthor, _id}) {
+function RecipeCard({recipeName, recipeImage, recipeTime, recipeCalories, recipeIngredients, recipeAuthor, _id, madeByUser}) {
    const [recipeIngredient, setRecipeIngredient] = useState([...recipeIngredients])
 
   return (
@@ -63,6 +63,12 @@ function RecipeCard({recipeName, recipeImage, recipeTime, recipeCalories, recipe
                     </button>
                     </Link>
                 </div>
+
+                {madeByUser && 
+                <div className="update-and-delete">
+                    <button>Update</button>
+                    <button>Delete</button>
+                </div>}
             </div>
         </div>
   )
