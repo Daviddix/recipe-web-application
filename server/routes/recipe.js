@@ -1,9 +1,9 @@
 const express = require("express")
 const cloudinary = require('cloudinary').v2
 const jwt = require("jsonwebtoken")
-const { noBodyDataError, unknownError, imageUploadError } = require("../actions/errorMessages")
+const { noBodyDataError, unknownError, imageUploadError, notAuthorizedToEdit, notAuthorizedToDelete } = require("../actions/errorMessages")
 const recipeModel = require("../models/recipe")
-const { recipeCreated, recipeUpdated } = require("../actions/successMessages")
+const { recipeCreated, recipeUpdated, recipeDeletedSuccessfully } = require("../actions/successMessages")
 const mongoose = require("mongoose")
 const userModel = require("../models/user")
 const JWT_SECRET = process.env.JWT_SECRET
@@ -80,6 +80,13 @@ recipeRouter.post("/", useAuth, async (req, res)=>{
 
 recipeRouter.patch("/edit/:recipeID", useAuth, async (req, res)=>{
   const recipeId = req.params.recipeID
+  const userId = req.user.userId
+  const r = await recipeModel.findById(recipeId).populate("recipeAuthor", ["username"])
+  const recipeAuthorId = r.recipeAuthor._id
+  
+  if(userId != recipeAuthorId){
+    return res.status(400).json(notAuthorizedToEdit)
+  }
   try{
       if(!req.body.newRecipeName){
           return res.status(404).json(noBodyDataError)
@@ -88,6 +95,19 @@ recipeRouter.patch("/edit/:recipeID", useAuth, async (req, res)=>{
 
       newRecipeTime = parseInt(newRecipeTime)
       newRecipeCalories = parseInt(newRecipeCalories)
+
+      if(newRecipeImage.toLowerCase().startsWith("http:") || newRecipeImage.toLowerCase().startsWith("https:")){
+        const updatedRecipe = {
+          recipeName: newRecipeName,
+          recipeIngredients: newRecipeIngredients,
+          recipePreparationProcess: newRecipePreparationProcess, 
+          recipeTime: newRecipeTime, 
+          recipeCalories: newRecipeCalories
+         }
+          await recipeModel.findByIdAndUpdate(recipeId, updatedRecipe)
+
+         return res.status(201).json(recipeUpdated);
+      }
 
       const imageBuffer = Buffer.from(newRecipeImage, "base64") 
 
@@ -166,6 +186,25 @@ recipeRouter.get("/:recipeID", async (req, res)=>{
     res.status(400).json(unknownError)
   }
     
+})
+
+recipeRouter.delete("/:recipeID", useAuth, async (req, res)=>{
+  const recipeId = req.params.recipeID
+  const userId = req.user.userId
+  const r = await recipeModel.findById(recipeId).populate("recipeAuthor", ["username"])
+  const recipeAuthorId = r.recipeAuthor._id
+  
+  if(userId != recipeAuthorId){
+    return res.status(400).json(notAuthorizedToDelete)
+  }
+
+  try{
+    await recipeModel.findByIdAndDelete(recipeId)
+    res.status(200).json(recipeDeletedSuccessfully)
+  }
+  catch (err){
+    res.status(400).json(unknownError)
+  }
 })
 
 module.exports = recipeRouter

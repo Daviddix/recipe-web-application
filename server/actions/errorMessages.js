@@ -58,4 +58,16 @@ const imageUploadError = {
     message : "an error ocurred while trying to upload your image, please try a different one"
 }
 
-module.exports = {noBodyDataError, unknownError, userNotFoundInDataBase, wrongPassword, logoutError, duplicateUsername, duplicateEmail, noJwtToken, jwtTokenError, imageUploadError}
+const notAuthorizedToEdit = {
+    status : "failed",
+    reason : "recipe edit",
+    message : "you're not authorized to edit this recipe because you didn't create it lol"
+}
+
+const notAuthorizedToDelete = {
+    status : "failed",
+    reason : "recipe delete",
+    message : "you're not authorized to delete this recipe because you didn't create it lol"
+}
+
+module.exports = {noBodyDataError, unknownError, userNotFoundInDataBase, wrongPassword, logoutError, duplicateUsername, duplicateEmail, noJwtToken, jwtTokenError, imageUploadError, notAuthorizedToEdit, notAuthorizedToDelete}

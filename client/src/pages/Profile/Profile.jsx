@@ -17,7 +17,15 @@ function Profile() {
     const[loadingProfile, setLoadingProfile] = useState(true)
     const navigate = useNavigate()
     const mappedRecipes = userDetails?.recipesPosted?.map((recipe)=>{
-      return <RecipeCard key={recipe._id} {...recipe}/>
+      return (
+        <RecipeCard
+          recipeRefresher={setUserDetails}
+          page={"profile"}
+          profileID={profileID}
+          key={recipe._id}
+          {...recipe}
+        />
+      );
   })
     useEffect(()=>{
         getProfileDetails()

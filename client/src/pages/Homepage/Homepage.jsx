@@ -18,10 +18,10 @@ function Homepage() {
     const [showModal, setShowModal] = useState(false)
     const navigate = useNavigate()
     const mappedRecipes = recipes.map((recipe)=>{
-        return <RecipeCard key={recipe._id} {...recipe}/>
+        return <RecipeCard recipeRefresher={setRecipes} key={recipe._id} {...recipe}/>
     })
      const mappedSearchedRecipes = searchedRecipes.map((recipe)=>{
-        return <RecipeCard key={recipe._id} {...recipe}/>
+        return <RecipeCard recipeRefresher={setRecipes} key={recipe._id} {...recipe}/>
     })
 
     useEffect(()=>{
