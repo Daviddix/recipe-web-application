@@ -122,7 +122,7 @@ function Homepage() {
 
     <button 
     onClick={handleNewRecipeButton}
-    className="add-new-recipe">
+    className="add-new-recipe primary-button">
         <img src={plusIcon} alt="add recipe" />    
     </button>
     </>

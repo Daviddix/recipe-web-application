@@ -38,6 +38,7 @@ function UserButton({setRecipes}) {
     }
         catch(err){
             setIsAuthenticated(false)
+            setIdOfUserState("fetch-error")
             setGettingProfileImage(false)
         }   
     }

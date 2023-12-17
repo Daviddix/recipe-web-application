@@ -9,9 +9,9 @@ const JWT_SECRET = process.env.JWT_SECRET
 const timeBeforeItExpires = 500000
 
 cloudinary.config({
-    cloud_name: "dqdzhocgi",
-    api_key : "153191799636678",
-    api_secret : "DAxDO2_oqJk5asFH7yFg0D7mysE"
+    cloud_name: process.env.CLOUD_NAME,
+    api_key : process.env.API_KEY,
+    api_secret : process.env.API_SECRET
 })
 
 userRouter = express.Router()
@@ -88,6 +88,7 @@ userRouter.post("/signup", async (req, res)=>{
                 res.cookie("jwt", userToken, {
                   httpOnly: true,
                   maxAge: timeBeforeItExpires,
+                  sameSite: "None",
                 })
 
                 res.status(201).json(userCreated);
@@ -124,6 +125,7 @@ userRouter.post("/login", async (req, res)=>{
             res.cookie("jwt", userToken, {
                 httpOnly: true,
                 maxAge: timeBeforeItExpires,
+                sameSite: "None",
               })
             res.status(201).json(loginSuccessful)
         }
