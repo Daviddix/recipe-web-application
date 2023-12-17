@@ -142,7 +142,7 @@ function EditRecipe() {
       <h1>Edit Recipe</h1>
     </header>
 
-    <main className="add-recipe-main">
+    <main className="add-recipe-main edit">
     {
       addingRecipe && <Loader messageToDisplay={"Adding Recipe"} />
     }

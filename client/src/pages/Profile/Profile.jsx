@@ -11,7 +11,6 @@ import Loader from "../../components/Loader/Loader";
 
 
 function Profile() {
-    const [isAuthenticated, setIsAuthenticated] = useState(false)
     const {profileID} = useParams()
     const [userDetails, setUserDetails] = useState({})
     const[loadingProfile, setLoadingProfile] = useState(true)
@@ -41,12 +40,10 @@ function Profile() {
         throw Error("err", { cause: jsonResponse })
       }
       setUserDetails(jsonResponse)
-      setIsAuthenticated(true)
       setLoadingProfile(false)
     }
     catch (err) {
       setLoadingProfile(false)
-      setIsAuthenticated(false)
     }
   }
 
@@ -57,7 +54,6 @@ function Profile() {
     loadingProfile? 
     <Loader messageToDisplay={"Loading Profile Details"} />
     :
-    isAuthenticated?
     <>
     <header className="profile-header">
     <button 
@@ -82,8 +78,6 @@ function Profile() {
         </div>
     </main>
     </>
-    :
-    <AuthModal />
   )
 }
 

@@ -18,6 +18,7 @@ function Signup() {
   const [creatingUser, setCreatingUser] = useState(false)
   const [emailError, setEmailError] = useState(null)
   const [usernameError, setUsernameError] = useState(null)
+  const [imageError, setImageError] = useState(null)
   const navigate = useNavigate()
 
   function triggerFileInput() {
@@ -34,6 +35,7 @@ function Signup() {
   }
 
   function addProfileImage(e) {
+    setImageError(null)
     const fileInput = e.target;
     const file = fileInput.files[0];
 
@@ -85,7 +87,9 @@ function Signup() {
         setEmailError(err.cause.message)
       } else if (reasonForError == "duplicate username") {
         setUsernameError(err.cause.message)
-      }else{
+      }else if (reasonForError == "image upload") {
+      setImageError(err.cause.message)
+    } else{
         alert("an error ocurred, please try again")
       }
     }
@@ -130,6 +134,7 @@ function Signup() {
                 <img src={plusIcon} alt="" />
               </div>
             </div>
+            {imageError && <p className="image-error">{imageError}</p>}
           </div>
 
           <div className="username-container">

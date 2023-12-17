@@ -4,7 +4,7 @@ import userIcon from "../../assets/icons/user.svg"
 import { useState, useLayoutEffect } from 'react'
 
 export const authAtom = atom(false)
-export const idOfUser = atom("")
+export const idOfUser = atom("e-val")
 
 function UserButton({setRecipes}) {
     const [idOfUserState, setIdOfUserState] = useAtom(idOfUser)
@@ -48,6 +48,9 @@ function UserButton({setRecipes}) {
             credentials: "include"
         })
         const jsonResponse = await logoutResponse.json()
+        if(!logoutResponse.ok){
+            throw Error("err", {cause : jsonResponse})
+        }
         setIsAuthenticated(false)
         setIdOfUserState("")
         setOpenMenuTab(false)

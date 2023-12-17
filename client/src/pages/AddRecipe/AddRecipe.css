@@ -159,3 +159,8 @@
 .calories-and-time-container label {
     display: inline-block;
 }
+
+.add-recipe-main .loader-overlay{
+    width:100%;
+    position: fixed;
+}

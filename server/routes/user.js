@@ -50,10 +50,9 @@ async function useAuth(req, res, next) {
   })
 }
 
-
 userRouter.post("/signup", async (req, res)=>{
     try{
-        if(req.body.username){ 
+        if(req.body.username && req.body.profilePicture && req.body.email && req.body.password){ 
             const {profilePicture, username,email,password} = req.body
 
             const isDuplicateUsername = await checkForDuplicateUsername(username)
@@ -62,7 +61,7 @@ userRouter.post("/signup", async (req, res)=>{
                 return res.status(400).json(duplicateUsername)
             }
 
-            // Check for duplicate email
+            
             const isDuplicateEmail = await checkForDuplicateEmail(email)
             if (isDuplicateEmail) {
                 return res.status(400).json(duplicateEmail);
@@ -74,7 +73,7 @@ userRouter.post("/signup", async (req, res)=>{
                 { resource_type: 'auto' },
               async function (error, result) {
                 if (error) {
-                  res.status(400).json(unknownError);
+                  res.status(400).json(imageUploadError);
                 }
 
                 const userMade = await userModel.create({
@@ -122,7 +121,10 @@ userRouter.post("/login", async (req, res)=>{
             }
 
             const userToken = await generateJwtToken(userInDb._id)
-            res.cookie("jwt", userToken)
+            res.cookie("jwt", userToken, {
+                httpOnly: true,
+                maxAge: timeBeforeItExpires,
+              })
             res.status(201).json(loginSuccessful)
         }
         else{
@@ -135,7 +137,7 @@ userRouter.post("/login", async (req, res)=>{
     }
 }) 
 
-userRouter.get("/profile/:profileID", useAuth, async (req, res)=>{
+userRouter.get("/profile/:profileID", async (req, res)=>{
     try{
         const id = req.params.profileID
         const user = await userModel.findById(id, ["username", "recipesPosted", "profilePicture"]).populate(

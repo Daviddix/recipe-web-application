@@ -1,7 +1,7 @@
 const express = require("express")
 const cloudinary = require('cloudinary').v2
 const jwt = require("jsonwebtoken")
-const { noBodyDataError, unknownError, imageUploadError, notAuthorizedToEdit, notAuthorizedToDelete } = require("../actions/errorMessages")
+const { noBodyDataError, unknownError, imageUploadError, notAuthorizedToEdit, notAuthorizedToDelete, noJwtToken, jwtTokenError } = require("../actions/errorMessages")
 const recipeModel = require("../models/recipe")
 const { recipeCreated, recipeUpdated, recipeDeletedSuccessfully } = require("../actions/successMessages")
 const mongoose = require("mongoose")

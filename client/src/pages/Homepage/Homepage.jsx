@@ -4,7 +4,7 @@ import "./Homepage.css"
 import RecipeCard from '../../components/RecipeCard/RecipeCard'
 import plusIcon from "../../assets/icons/plus.svg"
 import { Link, useNavigate } from 'react-router-dom'
-import UserButton, { authAtom } from "../../components/UserButton/UserButton"
+import UserButton, { authAtom, idOfUser } from "../../components/UserButton/UserButton"
 import { useAtom } from "jotai"
 import { useState, useEffect } from "react"
 import AuthModal from "../../components/AuthModal/AuthModal"
@@ -13,6 +13,7 @@ function Homepage() {
     const [isAuthenticated, setIsAuthenticated] = useAtom(authAtom)
     const [recipes, setRecipes] = useState([])
     const [userId, setUserId] = useState("")
+    const [idOfUserState, setIdOfUserState] = useAtom(idOfUser)
     const [searchedRecipes, setSearchedRecipes] = useState([])
     const [isSearching, setIsSearching] = useState(false)
     const [gettingRecipes, setGettingRecipes] = useState(true)
@@ -27,7 +28,7 @@ function Homepage() {
 
     useEffect(()=>{
         getAllRecipes()
-    }, [])
+    }, [idOfUserState])
 
     function handleNewRecipeButton(){
         if(isAuthenticated){

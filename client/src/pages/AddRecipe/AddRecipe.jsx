@@ -78,6 +78,7 @@ function AddRecipe() {
     }
     catch (err) {
       setAddingRecipe(false)
+      console.log(err, err.cause)
       const reasonForError = err.cause.reason
       if (reasonForError == "image upload") {
         alert(reasonForError)
