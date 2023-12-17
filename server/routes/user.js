@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken")
 const bcrypt = require("bcryptjs")
 const { userCreated, loginSuccessful, logoutSuccessful, profilePictureUpdated, usernameUpdated } = require("../actions/successMessages")
 const JWT_SECRET = process.env.JWT_SECRET
-const timeBeforeItExpires = 500000
+const timeBeforeItExpires = 500000000
 
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
@@ -88,7 +88,7 @@ userRouter.post("/signup", async (req, res)=>{
                 res.cookie("jwt", userToken, {
                   httpOnly: true,
                   maxAge: timeBeforeItExpires,
-                  sameSite: "None",
+                  path : "/"
                 })
 
                 res.status(201).json(userCreated);
@@ -125,7 +125,7 @@ userRouter.post("/login", async (req, res)=>{
             res.cookie("jwt", userToken, {
                 httpOnly: true,
                 maxAge: timeBeforeItExpires,
-                sameSite: "None",
+                path : "/"
               })
             res.status(201).json(loginSuccessful)
         }

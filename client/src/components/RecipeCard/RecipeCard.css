@@ -134,7 +134,7 @@
     -moz-transform: translateY(-1px);
     -ms-transform: translateY(-1px);
     -o-transform: translateY(-1px);
-    background-size: 160%;
+    background-position: 100%;
 }
 
 .update-and-delete button:active{

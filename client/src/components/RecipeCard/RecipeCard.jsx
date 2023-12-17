@@ -11,7 +11,6 @@ import { idOfUser } from "../UserButton/UserButton"
 function RecipeCard({recipeName, recipeImage, recipeTime, recipeCalories, recipeIngredients, recipeAuthor, _id, madeByUser, recipeRefresher, page, profileID}) {
    const [recipeIngredient, setRecipeIngredient] = useState([...recipeIngredients])
    const [userId, setUserId] = useAtom(idOfUser)
-   console.log(userId, recipeAuthor._id)
    if(userId == recipeAuthor._id){
     madeByUser = true
    }
