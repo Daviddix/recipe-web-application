@@ -4,8 +4,10 @@ import userIcon from "../../assets/icons/user.svg"
 import { useState, useLayoutEffect } from 'react'
 
 export const authAtom = atom(false)
+export const idOfUser = atom("")
 
-function UserButton() {
+function UserButton({setRecipes}) {
+    const [idOfUserState, setIdOfUserState] = useAtom(idOfUser)
     const [openMenuTab, setOpenMenuTab] = useState(false)
     const [profileImageUrl, setProfileImageUrl] = useState("")
     const [gettingProfileImage, setGettingProfileImage] = useState(true)
@@ -30,6 +32,7 @@ function UserButton() {
             throw Error("err", {cause : jsonResponse})
         }
         setProfileImageUrl(jsonResponse.profilePicture)
+        setIdOfUserState(jsonResponse._id)
         setIsAuthenticated(true)
         setGettingProfileImage(false)
     }
@@ -45,8 +48,9 @@ function UserButton() {
             credentials: "include"
         })
         const jsonResponse = await logoutResponse.json()
-        console.log(jsonResponse)
         setIsAuthenticated(false)
+        setIdOfUserState("")
+        setOpenMenuTab(false)
     }
         catch(err){
             alert("logout error")

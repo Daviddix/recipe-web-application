@@ -12,16 +12,17 @@ import AuthModal from "../../components/AuthModal/AuthModal"
 function Homepage() {
     const [isAuthenticated, setIsAuthenticated] = useAtom(authAtom)
     const [recipes, setRecipes] = useState([])
+    const [userId, setUserId] = useState("")
     const [searchedRecipes, setSearchedRecipes] = useState([])
     const [isSearching, setIsSearching] = useState(false)
     const [gettingRecipes, setGettingRecipes] = useState(true)
     const [showModal, setShowModal] = useState(false)
     const navigate = useNavigate()
     const mappedRecipes = recipes.map((recipe)=>{
-        return <RecipeCard recipeRefresher={setRecipes} key={recipe._id} {...recipe}/>
+        return <RecipeCard userId={userId} recipeRefresher={setRecipes} key={recipe._id} {...recipe}/>
     })
      const mappedSearchedRecipes = searchedRecipes.map((recipe)=>{
-        return <RecipeCard recipeRefresher={setRecipes} key={recipe._id} {...recipe}/>
+        return <RecipeCard userId={userId} recipeRefresher={setRecipes} key={recipe._id} {...recipe}/>
     })
 
     useEffect(()=>{
@@ -41,7 +42,6 @@ function Homepage() {
         const recipeResponse = await fetch("http://localhost:3000/recipe/", {
             credentials : "include"
         })
-
                 const recipeResponseInJson = await recipeResponse.json()
 
                 if(!recipeResponse.ok){
@@ -81,7 +81,9 @@ function Homepage() {
             <img src={logo} alt="icon" />
             </button>
 
-            <UserButton />
+            <UserButton 
+            setRecipes={setRecipes}
+            setUserId={setUserId} />
         </div>
 
         <h1>Delicious Recipes, Just a Tap Away</h1>

@@ -5,9 +5,18 @@ import foodBasket from "../../assets/icons/vegetable-basket.svg"
 import "./RecipeCard.css"
 import {Link} from "react-router-dom"
 import { useState } from "react"
+import { useAtom } from "jotai"
+import { idOfUser } from "../UserButton/UserButton"
 
 function RecipeCard({recipeName, recipeImage, recipeTime, recipeCalories, recipeIngredients, recipeAuthor, _id, madeByUser, recipeRefresher, page, profileID}) {
    const [recipeIngredient, setRecipeIngredient] = useState([...recipeIngredients])
+   const [userId, setUserId] = useAtom(idOfUser)
+   if(userId == recipeAuthor._id){
+    madeByUser = true
+   }
+   else{
+   madeByUser = false
+   }
 
    async function handleRecipeDelete(id, name){
     try{
@@ -97,8 +106,9 @@ function RecipeCard({recipeName, recipeImage, recipeTime, recipeCalories, recipe
             ) : (
               <>
                 <span>{recipeIngredient[0]}</span>
-                <span> ,{recipeIngredient[1]}</span>
-                <span> ,{recipeIngredient[2]}</span>
+                {recipeIngredient[1] &&  <span> ,{recipeIngredient[1]}</span>}
+                {recipeIngredient[2] &&  <span> ,{recipeIngredient[2]}</span>}
+                {recipeIngredient[3] &&  <span> ,{recipeIngredient[3]}</span>}
               </>
             )}
           </p>

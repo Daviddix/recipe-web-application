@@ -184,7 +184,7 @@ function Signup() {
             onClick={(e) => {
               handleSubmit(e, userInfo)
             }}
-            className="primary-button">Login</button>
+            className="primary-button">Signup</button>
           <p className="switch">
             Already have an account? <Link to="/login">Login</Link>
           </p>

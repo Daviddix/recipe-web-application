@@ -140,24 +140,8 @@ recipeRouter.patch("/edit/:recipeID", useAuth, async (req, res)=>{
 
 recipeRouter.get("/", async (req, res)=>{
   try{
-    const token = req.cookies.jwt
     const recipes = await recipeModel.find({}).populate("recipeAuthor", ["username", "profilePicture", "_id"])
 
-    if(token){
-      jwt.verify(token, JWT_SECRET, async function (err, decoded) {
-        if (err) {
-          return res.status(400).json(jwtTokenError)
-        }
-        const id = decoded.userId
-
-        for (const recipe of recipes){
-          if(recipe.recipeAuthor._id == id){
-            recipe.madeByUser = true
-            await recipe.save() 
-          }
-        }
-      })       
-    }
     res.status(200).json(recipes)
   }
   catch(err){
