@@ -77,7 +77,7 @@ function EditRecipe() {
     }
     try {
       setAddingRecipe(true)
-      const updatingRecipeResponse = await fetch(`http://localhost:3000/recipe/edit/${id}`, {
+      const updatingRecipeResponse = await fetch(`https://recipe-web-app-server-352s.onrender.com/recipe/edit/${id}`, {
         method: "PATCH",
         body: JSON.stringify(data),
         headers: {
@@ -105,7 +105,7 @@ function EditRecipe() {
 
   async function getRecipeDetails(id){
     try{
-        const getRecipeResponse = await fetch(`http://localhost:3000/recipe/edit/${id}`, {
+        const getRecipeResponse = await fetch(`https://recipe-web-app-server-352s.onrender.com/recipe/edit/${id}`, {
                 credentials : "include"
             })
             const getRecipeResponseJson = await getRecipeResponse.json()

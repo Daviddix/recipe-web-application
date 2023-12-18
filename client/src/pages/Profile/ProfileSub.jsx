@@ -19,7 +19,7 @@ function ProfileSub() {
 
   async function getProfileDetails() {
     try {
-      const profileResponse = await fetch(`http://localhost:3000/user/profile/${profileID}`, {
+      const profileResponse = await fetch(`https://recipe-web-app-server-352s.onrender.com/user/profile/${profileID}`, {
         credentials: "include"
       })
       const jsonResponse = await profileResponse.json()

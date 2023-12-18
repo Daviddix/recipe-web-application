@@ -24,7 +24,7 @@ function UserButton({setRecipes}) {
 
     async function getProfileInfo(){
         try {
-            const profileResponse = await fetch("http://localhost:3000/user/profile/",{
+            const profileResponse = await fetch("https://recipe-web-app-server-352s.onrender.com/user/profile/",{
             credentials: "include"
         })
         const jsonResponse = await profileResponse.json()
@@ -45,7 +45,7 @@ function UserButton({setRecipes}) {
 
     async function handleLogout(){
         try {
-            const logoutResponse = await fetch("http://localhost:3000/user/logout",{
+            const logoutResponse = await fetch("https://recipe-web-app-server-352s.onrender.com/user/logout",{
             credentials: "include"
         })
         const jsonResponse = await logoutResponse.json()

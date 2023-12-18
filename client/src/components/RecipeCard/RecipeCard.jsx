@@ -20,7 +20,7 @@ function RecipeCard({recipeName, recipeImage, recipeTime, recipeCalories, recipe
 
    async function handleRecipeDelete(id, name){
     try{
-        const deleteResponse = await fetch(`http://localhost:3000/recipe/${id}`, {
+        const deleteResponse = await fetch(`https://recipe-web-app-server-352s.onrender.com/recipe/${id}`, {
         credentials : "include",
         method : "DELETE"
     })  
@@ -42,7 +42,7 @@ function RecipeCard({recipeName, recipeImage, recipeTime, recipeCalories, recipe
    async function refreshRecipes(setterFunction, currentPage, profile){
     if(currentPage == "profile"){
         try {
-            const profileResponse = await fetch(`http://localhost:3000/user/profile/${profile}`, {
+            const profileResponse = await fetch(`https://recipe-web-app-server-352s.onrender.com/user/profile/${profile}`, {
               credentials: "include"
             })
             const jsonResponse = await profileResponse.json()
@@ -58,7 +58,7 @@ function RecipeCard({recipeName, recipeImage, recipeTime, recipeCalories, recipe
           }
     }
     try{
-        const recipeResponse = await fetch("http://localhost:3000/recipe/", {
+        const recipeResponse = await fetch("https://recipe-web-app-server-352s.onrender.com/recipe/", {
             credentials : "include"
         })
 

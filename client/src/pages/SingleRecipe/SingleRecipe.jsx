@@ -22,7 +22,7 @@ function SingleRecipe() {
 
     async function getSingleRecipe(){
         try{
-            const recipeResponse = await fetch(`http://localhost:3000/recipe/${recipeID}`)
+            const recipeResponse = await fetch(`https://recipe-web-app-server-352s.onrender.com/recipe/${recipeID}`)
     
             const recipeResponseInJson = await recipeResponse.json()
     

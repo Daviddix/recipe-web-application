@@ -28,7 +28,7 @@ function EditProfile() {
 
   async function getProfileDetails() {
     try {
-      const profileResponse = await fetch(`http://localhost:3000/user/edit/profile/`, {
+      const profileResponse = await fetch(`https://recipe-web-app-server-352s.onrender.com/user/edit/profile/`, {
         credentials: "include"
       })
       const jsonResponse = await profileResponse.json()
@@ -66,7 +66,7 @@ function EditProfile() {
        const data = {newProfilePicture : base64Url }
        try{
           setUpdatingProfilePicture(true)
-          const profilePictureResponse = await fetch("http://localhost:3000/user/edit/profile/", {
+          const profilePictureResponse = await fetch("https://recipe-web-app-server-352s.onrender.com/user/edit/profile/", {
           method : "PATCH",
           body: JSON.stringify(data),
           headers: {
@@ -99,7 +99,7 @@ function EditProfile() {
     e.preventDefault()
     const data = {newUsername}
     try{
-      const usernameResponse = await fetch("http://localhost:3000/user/edit/profile/", {
+      const usernameResponse = await fetch("https://recipe-web-app-server-352s.onrender.com/user/edit/profile/", {
       method : "PATCH",
       body: JSON.stringify(data),
       headers: {

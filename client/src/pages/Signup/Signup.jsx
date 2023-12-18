@@ -65,7 +65,7 @@ function Signup() {
     }
     try {
       setCreatingUser(true)
-      const signUpResponse = await fetch("http://localhost:3000/user/signup", {
+      const signUpResponse = await fetch("https://recipe-web-app-server-352s.onrender.com/user/signup", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {

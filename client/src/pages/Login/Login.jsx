@@ -31,7 +31,7 @@ function Login() {
     e.preventDefault()
     try {
       setLoggingUserIn(true)
-      const loginResponse = await fetch("http://localhost:3000/user/login", {
+      const loginResponse = await fetch("https://recipe-web-app-server-352s.onrender.com/user/login", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {

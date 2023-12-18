@@ -61,7 +61,7 @@ function AddRecipe() {
     }
     try {
       setAddingRecipe(true)
-      const creatingRecipeResponse = await fetch("http://localhost:3000/recipe/", {
+      const creatingRecipeResponse = await fetch("https://recipe-web-app-server-352s.onrender.com/recipe/", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {

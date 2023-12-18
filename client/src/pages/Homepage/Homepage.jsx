@@ -40,7 +40,7 @@ function Homepage() {
     
     async function getAllRecipes(){
         try{
-        const recipeResponse = await fetch("http://localhost:3000/recipe/", {
+        const recipeResponse = await fetch("https://recipe-web-app-server-352s.onrender.com/recipe/", {
             credentials : "include"
         })
                 const recipeResponseInJson = await recipeResponse.json()
