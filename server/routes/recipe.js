@@ -53,7 +53,7 @@ recipeRouter.post("/", useAuth, async (req, res)=>{
                 }
 
                 const recipeMade = await recipeModel.create({
-                  recipeImage: result.url,
+                  recipeImage: result.secure_url,
                   recipeName,
                   recipeIngredients,
                   recipePreparationProcess, 
@@ -120,7 +120,7 @@ recipeRouter.patch("/edit/:recipeID", useAuth, async (req, res)=>{
               }
               const updatedRecipe = {
                recipeName: newRecipeName, 
-               recipeImage: result.url ,
+               recipeImage: result.secure_url ,
                recipeIngredients: newRecipeIngredients,
                recipePreparationProcess: newRecipePreparationProcess, 
                recipeTime: newRecipeTime, 

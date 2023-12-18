@@ -77,7 +77,7 @@ userRouter.post("/signup", async (req, res)=>{
                 }
 
                 const userMade = await userModel.create({
-                  profilePicture: result.url,
+                  profilePicture: result.secure_url,
                   username,
                   email,
                   password,
@@ -194,7 +194,7 @@ userRouter.patch("/edit/profile/", useAuth, async (req, res)=>{
                   res.status(400).json(imageUploadError);
                 }
                 const user = await userModel.findById(id)
-                user.profilePicture = result.url
+                user.profilePicture = result.secure_url
                 await user.save()
 
                 res.status(201).json(profilePictureUpdated);
