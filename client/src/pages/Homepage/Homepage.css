@@ -90,10 +90,16 @@ header .icon-and-profile-image{
     background-color: transparent;
     border: none;
     text-align: left;
-    margin-bottom: .5rem;
+    margin-bottom: .8rem;
     font-weight: 600;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     opacity: .8;
+}
+
+.not-logged-in > button:last-of-type,
+.logged-in > button:last-of-type{
+    padding-top: .8rem;
+    margin-bottom:0;
 }
 
 .not-logged-in > button:last-of-type{
@@ -178,6 +184,11 @@ main.homepage-main{
         column-gap: 2rem;
         justify-items: center;
     }
+    .not-logged-in > button,
+    .logged-in > button
+    {
+    font-size: 1.4rem;
+}
 }
 
 button.add-new-recipe{
