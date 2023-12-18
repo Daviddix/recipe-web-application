@@ -73,7 +73,7 @@ userRouter.post("/signup", async (req, res)=>{
                 { resource_type: 'auto' },
               async function (error, result) {
                 if (error) {
-                  res.status(400).json(imageUploadError);
+                  return res.status(400).json(imageUploadError);
                 }
 
                 const userMade = await userModel.create({
@@ -88,7 +88,9 @@ userRouter.post("/signup", async (req, res)=>{
                 res.cookie("jwt", userToken, {
                   httpOnly: true,
                   maxAge: timeBeforeItExpires,
-                  path : "/"
+                  path : "/",
+                  secure: true,
+                  sameSite: 'None'
                 })
 
                 res.status(201).json(userCreated);
@@ -125,7 +127,9 @@ userRouter.post("/login", async (req, res)=>{
             res.cookie("jwt", userToken, {
                 httpOnly: true,
                 maxAge: timeBeforeItExpires,
-                path : "/"
+                path : "/",
+                secure: true,
+                sameSite: 'None'
               })
             res.status(201).json(loginSuccessful)
         }
