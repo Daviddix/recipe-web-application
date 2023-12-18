@@ -1,8 +1,7 @@
 .auth-modal-overlay{
     width:100vw;
     height:100vh;
-    background-color:rgba(236, 214, 196, 0.432);
-    backdrop-filter: blur(60px);
+    background-image:linear-gradient(to bottom right, rgba(236, 214, 196, 0.432),rgba(229, 196, 236, 0.432));
     position: absolute;
     top:0;
     z-index:4;
@@ -24,7 +23,7 @@
     -o-border-radius: 50%;
     position: absolute;
     top:6rem;
-    left:6rem;
+    left:2rem;
 }
 
 .auth-modal-overlay .back-button img{
@@ -42,7 +41,7 @@
     -ms-border-radius: 1rem;
     -o-border-radius: 1rem;
     border: 1px solid var(--input-border-color);
-    box-shadow: 0 .4rem 1rem rgba(0, 0, 0, 0.384);
+    box-shadow: 0 .4rem 2rem rgba(0, 0, 0, 0.089);
 }
 
 .auth-modal > img{
@@ -53,7 +52,7 @@
 .auth-modal p{
     font-size: 1.4rem;
     font-weight: 500;
-    max-width: 90%;
+    max-width: 95%;
     text-align: center;
     margin:3rem auto;
 }
@@ -61,7 +60,7 @@
 .auth-button-container{
     display: flex;
     flex-direction: column;
-    max-width: 75%;
+    max-width: 85%;
     margin: auto;
 }
 
