@@ -96,7 +96,7 @@ function Homepage() {
             <input 
             placeholder="Search for a recipe" 
             type="text" 
-            onChange={(e)=>{
+            onInput={(e)=>{
                 handleSearch(e.target.value)
             }}
             name="search" 
