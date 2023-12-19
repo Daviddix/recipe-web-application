@@ -11,7 +11,7 @@
   - [Author](#author)
 
 ## Overview
-Deliciouso is a web application that helps you find recipes to different meals and alose gives you the ability to add your own recipes.
+Deliciouso is a web application that helps you find recipes to different meals and also gives you the ability to add your own recipes.
 
 ### Features
 
