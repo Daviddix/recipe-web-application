@@ -118,8 +118,9 @@ function EditProfile() {
   catch(err){
     if(err.cause.reason == "duplicate username"){
       alert(err.cause.message)
-    }
+    }else{
       alert("an unknown ocurred, please try again")
+    }
   }
   }
 
