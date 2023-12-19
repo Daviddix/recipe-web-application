@@ -116,8 +116,11 @@ function EditProfile() {
   setShowUpdateUsername(false)
   }
   catch(err){
-      alert("an error ocurred")
-      console.log(err.cause, err)
+    if(err.cause.reason == "duplicate username"){
+      alert(err.cause.message)
+      setShowUpdateUsername(false)
+    }
+      alert("an unknown ocurred, please try again")
   }
   }
 

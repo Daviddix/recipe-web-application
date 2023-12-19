@@ -18,6 +18,7 @@ function Homepage() {
     const [isSearching, setIsSearching] = useState(false)
     const [gettingRecipes, setGettingRecipes] = useState(true)
     const [showModal, setShowModal] = useState(false)
+    const [searchState, setSearchState] = useState("")
     const navigate = useNavigate()
     const mappedRecipes = recipes.map((recipe)=>{
         return <RecipeCard userId={userId} recipeRefresher={setRecipes} key={recipe._id} {...recipe}/>
@@ -89,16 +90,25 @@ function Homepage() {
 
         <h1>Delicious Recipes, Just a Tap Away</h1>
 
-        <form>
+        <form
+        onSubmit={(e)=>{
+            e.preventDefault()
+            handleSearch(searchState)
+        }}
+        >
             <label htmlFor="search">
                 <img src={searchIcon} alt="" />
             </label>
             <input 
-            placeholder="Search for a recipe" 
-            type="text" 
-            onInput={(e)=>{
-                handleSearch(e.target.value)
+            value={searchState}
+            onChange={(e)=>{
+                setSearchState(e.target.value)
+                if(e.target.value.trim() == ""){
+                    setIsSearching(false)
+                }
             }}
+            placeholder="Search for a recipe" 
+            type="text"
             name="search" 
             id="search" 
             />

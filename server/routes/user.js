@@ -214,6 +214,12 @@ userRouter.patch("/edit/profile/", useAuth, async (req, res)=>{
                 const newUsername = req.body.newUsername
                 const id = req.user.userId
 
+                const isDuplicateUsername = await checkForDuplicateUsername(newUsername)
+
+                if (isDuplicateUsername) {
+                    return res.status(400).json(duplicateUsername)
+                }
+
                 const user = await userModel.findById(id)
                 user.username = newUsername
                 await user.save()
