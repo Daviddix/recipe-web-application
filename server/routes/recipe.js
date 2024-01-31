@@ -9,9 +9,9 @@ const userModel = require("../models/user")
 const JWT_SECRET = process.env.JWT_SECRET
 
 cloudinary.config({
-    cloud_name: "dqdzhocgi",
-    api_key : "153191799636678",
-    api_secret : "DAxDO2_oqJk5asFH7yFg0D7mysE"
+    cloud_name: process.env.CLOUD_NAME,
+    api_key : process.env.API_KEY,
+    api_secret : process.env.API_SECRET
 })
 
 recipeRouter = express.Router()
